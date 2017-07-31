@@ -1,0 +1,26 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+<!-- User -->
+	<changeSet author="xisco.balaguer" id="createTable.User" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<createTable tableName="USER">
+			<column autoIncrement="true" name="ID" type="BIGINT">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="USERNAME" type="VARCHAR(50)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="PASSWORD" type="VARCHAR(255)"/>
+			<column name="EMAIL" type="VARCHAR(100)"/>
+		</createTable>
+	</changeSet>
+
+	<changeSet author="xisco.balaguer" id="addUniqueConstraints.User.Username" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<addUniqueConstraint columnNames="USERNAME" constraintName="UK_USER_USERNAME" tableName="USER"/>
+	</changeSet>
+
+	<changeSet author="xisco.balaguer" id="executeSQLscript">
+		<sqlFile path="C:\Users\xisco.balaguer\Desktop\myproject\src\main\resources\liquibase\db.sql" />
+	</changeSet>
+</databaseChangeLog>
